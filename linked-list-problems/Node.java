@@ -48,4 +48,8 @@
         return head;
     }
 
+    public static void main(String[] args) {
+		Node head = createLinkedList();
+		head.print();
+	}
   }
