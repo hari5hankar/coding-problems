@@ -4,11 +4,11 @@ import java.util.List;
 /*
  * is the tree a Binary Search Tree? 
  */
-public class IsBST {
+public class CheckBST {
 
 	/*
-	 * trivial solution: check if inorder traversal gives a sorted array.
-	 * won't work if avl trees rotation?
+	 * trivial solution: check if in-order traversal gives a sorted array.
+	 * won't work in AVL trees due to rotation?
 	 */
 	public static boolean isBST_1(BSTNode root){
 		List<Integer> a = new ArrayList<>();
@@ -43,11 +43,11 @@ public class IsBST {
 	
 	public static void main(String[] args) {
 		BSTNode root = BSTNode.createBST();
-		System.out.println(IsBST.isBST_1(root));
-		System.out.println(IsBST.isBST_2(root));
+		System.out.println(CheckBST.isBST_1(root));
+		System.out.println(CheckBST.isBST_2(root));
 		root.left.right.key = 4;
-		System.out.println(IsBST.isBST_1(root));
-		System.out.println(IsBST.isBST_2(root));
+		System.out.println(CheckBST.isBST_1(root));
+		System.out.println(CheckBST.isBST_2(root));
 	}
 
 }
