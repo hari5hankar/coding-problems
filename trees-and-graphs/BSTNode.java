@@ -3,10 +3,14 @@ import java.util.Queue;
 
 public class BSTNode {
 
-	int key;
-	BSTNode left;
-	BSTNode right;
+	public int key;
+	public BSTNode left;
+	public BSTNode right;
 
+	public BSTNode(){
+		
+	}
+	
 	public BSTNode(int key) {
 		this.key = key;
 	}
@@ -25,8 +29,35 @@ public class BSTNode {
 			x.right = put(x.right, key);
 		return x;
 	}
+	
+	/*
+	 * Depth First Traversals.
+	 */
+	public static void inOrder(BSTNode root) {
+		if(root == null) return;
+		inOrder(root.left);
+		System.out.println(root.key);
+		inOrder(root.right);
+	}
 
-	public static void printLevelOrder(BSTNode root) {
+	public static void preOrder(BSTNode root) {
+		if(root == null) return;
+		System.out.println(root.key);
+		preOrder(root.left);
+		preOrder(root.right);
+	}
+
+	public static void postOrder(BSTNode root) {
+		if(root ==null) return;
+		postOrder(root.left);
+		postOrder(root.right);
+		System.out.println(root.key);
+	}
+	
+	/*
+	 * Breadth First Traversals.
+	 */
+	public static void levelOrder(BSTNode root) {
 		Queue<BSTNode> queue = new LinkedList<>();
 		queue.add(root);
 		while (!queue.isEmpty()) {
@@ -50,6 +81,6 @@ public class BSTNode {
 
 	public static void main(String[] args) {
 		BSTNode root = BSTNode.createBST();
-		printLevelOrder(root);
+		levelOrder(root);
 	}
 }
