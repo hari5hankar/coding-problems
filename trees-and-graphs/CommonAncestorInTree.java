@@ -11,8 +11,8 @@ public class CommonAncestorInTree {
 	public static int commonAncestor1(TreeNode root, int key1, int key2) {
 		Stack<Integer> s1 = new Stack<>();
 		Stack<Integer> s2 = new Stack<>();
-		storePath(s1, root, key1);
-		storePath(s2, root, key2);
+		storePathIfExists(s1, root, key1);
+		storePathIfExists(s2, root, key2);
 		int i;
 		for (i = 0; i < s1.size() && i < s2.size(); i++) {
 			if (s1.get(i) != s2.get(i))
@@ -25,13 +25,13 @@ public class CommonAncestorInTree {
 	 * Finds the path from root to given node, Stores the path in a list,
 	 * returns true if path exists otherwise false.
 	 */
-	private static boolean storePath(Stack<Integer> stack, TreeNode node, int key) {
+	private static boolean storePathIfExists(Stack<Integer> stack, TreeNode node, int key) {
 		if (node == null)
 			return false;
 		stack.push(node.key);
 		if (key == node.key)
 			return true;
-		else if (storePath(stack, node.left, key) || storePath(stack, node.right, key)) {
+		else if (storePathIfExists(stack, node.left, key) || storePathIfExists(stack, node.right, key)) {
 			return true;
 		} else {
 			stack.pop();
@@ -40,8 +40,13 @@ public class CommonAncestorInTree {
 	}
 
 	/*
-	 * Better soultion, no extra space. the LCA node always has one key in left
-	 * subtree, and the other key in the right subtree.
+	 * The idea is to traverse the tree starting from root. If any of the given
+	 * keys (n1 and n2) matches with root, then root is LCA (assuming that both
+	 * keys are present). If root doesn’t match with any of the keys, we recur
+	 * for left and right subtree. The node which has one key present in its
+	 * left subtree and the other key present in right subtree is the LCA. If
+	 * both keys lie in left subtree, then left subtree has LCA also, otherwise
+	 * LCA lies in right subtree.
 	 */
 	public static TreeNode commonAncestor2(TreeNode root, int key1, int key2) {
 
@@ -67,12 +72,19 @@ public class CommonAncestorInTree {
 		 * one match was found and the common ancestor is above. So it should be
 		 * passed up. In both cases it should be passed up.
 		 */
-		return (left != null) ? left : right;
+		if (left != null && right == null)
+			return left;
+		else if (left == null && right != null)
+			return right;
+		else
+			return null;
+
+		// return (left != null) ? left : right;
 	}
 
 	public static void main(String[] args) {
 		TreeNode root = TreeNode.createBinaryTree();
-		System.out.println(CommonAncestorInTree.commonAncestor1(root, 4, 7));
-		System.out.println(CommonAncestorInTree.commonAncestor2(root, 4, 7).key);
+		System.out.println(CommonAncestorInTree.commonAncestor1(root, 4, 2));
+		System.out.println(CommonAncestorInTree.commonAncestor2(root, 4, 2).key);
 	}
 }

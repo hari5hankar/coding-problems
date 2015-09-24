@@ -4,7 +4,7 @@ import java.util.List;
 /*
  * is the tree a Binary Search Tree? 
  */
-public class CheckIsTreeABST {
+public class CheckTreeBST {
 
 	/*
 	 * trivial solution: check if in-order traversal gives a sorted array.
@@ -63,12 +63,12 @@ public class CheckIsTreeABST {
 
 	public static void main(String[] args) {
 		TreeNode root = TreeNode.createBinaryTree();
-		System.out.println(CheckIsTreeABST.isBST_1(root));
-		System.out.println(CheckIsTreeABST.isBST_2(root));
+		System.out.println(CheckTreeBST.isBST_1(root));
+		System.out.println(CheckTreeBST.isBST_2(root));
 		
-		root = CheckIsTreeABST.createBST();
-		System.out.println(CheckIsTreeABST.isBST_1(root));
-		System.out.println(CheckIsTreeABST.isBST_2(root));
+		root = CheckTreeBST.createBST();
+		System.out.println(CheckTreeBST.isBST_1(root));
+		System.out.println(CheckTreeBST.isBST_2(root));
 	}
 
 }
