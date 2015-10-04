@@ -11,15 +11,14 @@ public class TreeNode {
 		this.key = key;
 	}
 
-
-
-/*
+/* 
     		1
  		  /    \
 		 2      3
 		/ \    / \
 	   4   5  6   7
 */
+	
 	public static TreeNode createBinaryTree() {
 
 		TreeNode root = new TreeNode(1);
@@ -29,6 +28,24 @@ public class TreeNode {
 		root.left.right = new TreeNode(5);
 		root.right.left = new TreeNode(6);
 		root.right.right = new TreeNode(7);
+		return root;
+	}
+	
+/*	
+       10
+	  /  \
+	-2    7 
+	/ \
+   8  -4  
+*/
+
+	public static TreeNode createBinaryTreeTwo() {
+
+		TreeNode root = new TreeNode(10);
+		root.left = new TreeNode(-2);
+		root.right = new TreeNode(7);
+		root.left.left = new TreeNode(8);
+		root.left.right = new TreeNode(-4);
 		return root;
 	}
 
@@ -43,6 +60,11 @@ public class TreeNode {
 			if (x.right != null)
 				queue.add(x.right);
 		}
+	}
+	
+	@Override
+	public String toString(){
+		return Integer.toString(this.key);
 	}
 
 	public static void main(String[] args) {

@@ -2,7 +2,7 @@
  * A modification of the problem at https://codility.com/demo/results/demoH5GMV3-PV8/
  * The length the frog can jump is not constant, but it can jump 
  * any length from (0, D).
- */
+ 
 public class Frog {
 	
 	public static int solution(int[] A, int X, int D) {
@@ -42,3 +42,4 @@ public class Frog {
 	}
 
 }
+*/

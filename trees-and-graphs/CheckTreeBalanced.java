@@ -7,8 +7,8 @@ public class CheckTreeBalanced {
 	public static boolean isTreeBalanced(TreeNode root) {
 		if (root == null)
 			return true;
-		boolean balanced = Math.abs(heightOfTree(root.left) - heightOfTree(root.right)) <= 1 ? true : false;
-		return (isTreeBalanced(root.left) && isTreeBalanced(root.right) && balanced);
+		return (isTreeBalanced(root.left) && isTreeBalanced(root.right)
+				&& Math.abs(heightOfTree(root.left) - heightOfTree(root.right)) <= 1);
 	}
 
 	public static int heightOfTree(TreeNode root) {
@@ -19,7 +19,7 @@ public class CheckTreeBalanced {
 
 	public static void main(String[] args) {
 		TreeNode root = TreeNode.createBinaryTree();
-		System.out.println(isTreeBalanced(root)); 
+		System.out.println(isTreeBalanced(root));
 		root.right = null;
 		System.out.println(isTreeBalanced(root));
 	}

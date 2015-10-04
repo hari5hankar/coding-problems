@@ -1,6 +1,6 @@
 import java.util.Stack;
 
-public class PrintPathThatSumsToNoode {
+public class PrintPathThatSumsToNode {
 
 	public static void printPath(TreeNode root, int sum) {
 		Stack<Integer> stack = new Stack<>();
@@ -12,7 +12,7 @@ public class PrintPathThatSumsToNoode {
 			return;
 		stack.push(root.key);
 		if (sum == stackSum(stack))
-			printStack(stack);
+			printStack(stack);  //print here and continue, there could be more paths
 		printPath(stack, root.left, sum);
 		printPath(stack, root.right, sum);
 		stack.pop();
@@ -30,7 +30,14 @@ public class PrintPathThatSumsToNoode {
 			System.out.print("(" + i + ")");
 		System.out.println();
 	}
-
+/* 
+       	1
+	  /    \
+     2      3
+    / \    / \
+   4   5  6   7
+*/
+	
 	public static void main(String[] args) {
 		TreeNode root = TreeNode.createBinaryTree();
 		root.right.left.left = new TreeNode(-1);
