@@ -11,8 +11,12 @@ public class CommonAncestorInTree {
 	public static int commonAncestor1(TreeNode root, int key1, int key2) {
 		Stack<Integer> s1 = new Stack<>();
 		Stack<Integer> s2 = new Stack<>();
-		storePathIfExists(s1, root, key1);
-		storePathIfExists(s2, root, key2);
+		boolean key1Exists = storePathIfExists(s1, root, key1);
+		boolean key2Exists =storePathIfExists(s2, root, key2);
+		if((key1Exists && key2Exists) == false){
+			System.out.println("node not found");
+			return 0;
+		}
 		int i;
 		for (i = 0; i < s1.size() && i < s2.size(); i++) {
 			if (s1.get(i) != s2.get(i))
@@ -27,7 +31,7 @@ public class CommonAncestorInTree {
 	 */
 	private static boolean storePathIfExists(Stack<Integer> stack, TreeNode node, int key) {
 		if (node == null)
-			return false;
+			return false; //node was not found along this path
 		stack.push(node.key);
 		if (key == node.key)
 			return true;
@@ -84,6 +88,7 @@ public class CommonAncestorInTree {
 
 	public static void main(String[] args) {
 		TreeNode root = TreeNode.createBinaryTree();
+		root.left.left.key = 20;
 		System.out.println(CommonAncestorInTree.commonAncestor1(root, 4, 2));
 		System.out.println(CommonAncestorInTree.commonAncestor2(root, 4, 2).key);
 	}
