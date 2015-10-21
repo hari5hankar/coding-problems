@@ -1,21 +1,17 @@
 
-/**
- * Created by Harishankar on 17-06-2015.
- */
+  public class ListNode {
+      public int val;
+      public ListNode next;
 
-  public class Node {
-      public int data;
-      public Node next;
-
-    public Node(int data){
-        this.data = data;
+    public ListNode(int data){
+        this.val = data;
         this.next = null;
     }
 
     public void addAtEnd(int data) {
 
-        Node newLast = new Node(data);
-        Node currentNode = this;
+        ListNode newLast = new ListNode(data);
+        ListNode currentNode = this;
 
         while(currentNode.next != null)	{
             currentNode = currentNode.next;
@@ -24,17 +20,21 @@
     }
 
     public void print(){
-        Node currentNode = this;
+        ListNode currentNode = this;
         while(currentNode!= null){
-            System.out.print(currentNode.data + "->");
+            System.out.print(currentNode.val + "->");
             currentNode = currentNode.next;
         }
         System.out.println("//");
     }
+    
+    public String toString(){
+    	return Integer.toString(this.val);
+    }
 
-    public static Node createLinkedList(){
+    public static ListNode createLinkedList(){
 
-        Node head = new Node(1);
+        ListNode head = new ListNode(1);
         head.addAtEnd(4);
         head.addAtEnd(2);
         head.addAtEnd(3);
@@ -44,12 +44,11 @@
         head.addAtEnd(2);
         head.addAtEnd(4);
         head.addAtEnd(3);
-
         return head;
     }
 
     public static void main(String[] args) {
-		Node head = createLinkedList();
+		ListNode head = createLinkedList();
 		head.print();
 	}
   }

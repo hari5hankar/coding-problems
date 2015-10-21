@@ -7,14 +7,14 @@ import java.util.Stack;
 public class IsPalindrome {
 
 
-    public static boolean isPalindrome(Node head){
+    public static boolean isPalindrome(ListNode head){
 
         Stack<Integer> stack = new Stack<Integer>();
-        Node currentNodeSlow = head;
-        Node currentNodeFast = head;
+        ListNode currentNodeSlow = head;
+        ListNode currentNodeFast = head;
 
         while(currentNodeFast.next != null && currentNodeFast.next.next != null){
-            stack.push(currentNodeSlow.data);
+            stack.push(currentNodeSlow.val);
             currentNodeSlow = currentNodeSlow.next;
             currentNodeFast = currentNodeFast.next.next;
         }
@@ -22,11 +22,11 @@ public class IsPalindrome {
         if(currentNodeFast.next != null){
             currentNodeSlow = currentNodeSlow.next;
         }else{
-            stack.push(currentNodeSlow.data);
+            stack.push(currentNodeSlow.val);
         }
 
         while(!stack.isEmpty()){
-            if(stack.pop() != currentNodeSlow.data){
+            if(stack.pop() != currentNodeSlow.val){
                 return false;
             }
             currentNodeSlow = currentNodeSlow.next;
@@ -41,7 +41,7 @@ public class IsPalindrome {
 
     public static void main(String[] args){
 
-        Node head = new Node(1);
+        ListNode head = new ListNode(1);
         head.addAtEnd(2);
         head.addAtEnd(1);
 /*

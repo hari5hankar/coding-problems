@@ -12,17 +12,17 @@ public class RemoveDuplicates {
      *  remove duplicates and return head
      */
 
-    public static Node removeDuplicates(Node head) {
+    public static ListNode removeDuplicates(ListNode head) {
 
         HashSet<Integer> set = new HashSet<>();
-        Node currentNode = head;
-        Node previousNode = null;
+        ListNode currentNode = head;
+        ListNode previousNode = null;
 
         while(currentNode!= null){
-          if(set.contains(currentNode.data)){
+          if(set.contains(currentNode.val)){
               previousNode.next = currentNode.next;
           }else {
-              set.add(currentNode.data);
+              set.add(currentNode.val);
               previousNode = currentNode;
           }
             currentNode = currentNode.next;
@@ -36,14 +36,14 @@ public class RemoveDuplicates {
      *  remove duplicates and return head without using a temporary buffer
      */
 
-    public static Node removeDuplicatesWithoutBuffer(Node head){
-        Node currentPrimaryNode = head;
+    public static ListNode removeDuplicatesWithoutBuffer(ListNode head){
+        ListNode currentPrimaryNode = head;
 
         while(currentPrimaryNode !=null) {
-            Node currentSecondaryNode = currentPrimaryNode.next;
-            Node previousSecondaryNode = currentPrimaryNode;
+            ListNode currentSecondaryNode = currentPrimaryNode.next;
+            ListNode previousSecondaryNode = currentPrimaryNode;
             while (currentSecondaryNode != null) {
-                if (currentSecondaryNode.data == currentPrimaryNode.data) {
+                if (currentSecondaryNode.val == currentPrimaryNode.val) {
                     previousSecondaryNode.next = currentSecondaryNode.next;
                 }
                 previousSecondaryNode = currentSecondaryNode;
@@ -59,12 +59,12 @@ public class RemoveDuplicates {
 
     public static void main(String[] args) {
 
-        Node head = Node.createLinkedList();
+        ListNode head = ListNode.createLinkedList();
         head.print();
         head = removeDuplicates(head);
         head.print();
 
-        head = Node.createLinkedList();
+        head = ListNode.createLinkedList();
         head.print();
         head = removeDuplicatesWithoutBuffer(head);
         head.print();

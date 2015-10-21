@@ -11,24 +11,24 @@ public class PartitionLinkedList {
       * join the two lists together
       */
 
-    public static Node partitionLinkedList_1(Node head, int partitionValue){
+    public static ListNode partitionLinkedList_1(ListNode head, int partitionValue){
 
-        Node smallerHead = null;
-        Node largerHead = null;
+        ListNode smallerHead = null;
+        ListNode largerHead = null;
 
-        Node currentNode = head;
+        ListNode currentNode = head;
         while(currentNode.next !=null){
-            if(currentNode.data < partitionValue){
+            if(currentNode.val < partitionValue){
                 if(smallerHead == null){
-                    smallerHead = new Node(currentNode.data);
+                    smallerHead = new ListNode(currentNode.val);
                 }else{
-                    smallerHead.addAtEnd(currentNode.data);
+                    smallerHead.addAtEnd(currentNode.val);
                 }
             }else{
                 if(largerHead == null){
-                    largerHead = new Node(currentNode.data);
+                    largerHead = new ListNode(currentNode.val);
                 }else{
-                    largerHead.addAtEnd(currentNode.data);
+                    largerHead.addAtEnd(currentNode.val);
                 }
             }
             currentNode = currentNode.next;
@@ -48,24 +48,24 @@ public class PartitionLinkedList {
 
     //------------------------------------------------------------------------------------------------------------------
 
-    public static Node partitionLinkedList_2(Node head, int partitionValue){
+    public static ListNode partitionLinkedList_2(ListNode head, int partitionValue){
 
 
 
-        Node smallerHead = null;
-        Node smallerTail = null;
-        Node largerHead = null;
-        Node largerTail = null;
+        ListNode smallerHead = null;
+        ListNode smallerTail = null;
+        ListNode largerHead = null;
+        ListNode largerTail = null;
 
-        Node currentNode = head;
+        ListNode currentNode = head;
         while(currentNode.next !=null){
 
-            if(currentNode.data < partitionValue){
+            if(currentNode.val < partitionValue){
                 if(smallerHead == null){
-                    smallerHead = new Node(currentNode.data);
+                    smallerHead = new ListNode(currentNode.val);
                 }else{
-                    smallerTail = new Node(currentNode.data);
-                    Node currentSmallerNode = smallerHead;
+                    smallerTail = new ListNode(currentNode.val);
+                    ListNode currentSmallerNode = smallerHead;
                     while(currentSmallerNode.next != null){
                         currentSmallerNode = currentSmallerNode.next;
                     }
@@ -73,10 +73,10 @@ public class PartitionLinkedList {
                 }
             }else{
                 if(largerHead == null){
-                    largerHead = new Node(currentNode.data);
+                    largerHead = new ListNode(currentNode.val);
                 }else{
-                    largerTail = new Node(currentNode.data);
-                    Node currentLargerNode = largerHead;
+                    largerTail = new ListNode(currentNode.val);
+                    ListNode currentLargerNode = largerHead;
                     while(currentLargerNode.next!= null){
                         currentLargerNode = currentLargerNode.next;
                     }
@@ -103,12 +103,12 @@ public class PartitionLinkedList {
 
     public static void main(String[] args){
 
-        Node head = Node.createLinkedList();
+        ListNode head = ListNode.createLinkedList();
         head.print();
         head = partitionLinkedList_1(head, 3);
         head.print();
 
-        head = Node.createLinkedList();
+        head = ListNode.createLinkedList();
         head.print();
         head = partitionLinkedList_2(head, 3);
         head.print();

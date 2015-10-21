@@ -3,14 +3,14 @@ import java.util.Set;
 
 public class MergeSortedPostingsLists {
 
-	public static void merge(Set<Integer> set, Node head1, Node head2) {
+	public static void merge(Set<Integer> set, ListNode head1, ListNode head2) {
 		
 		while(head1 != null && head2!= null) {
-			if(head1.data == head2.data){
-				set.add(head1.data);
+			if(head1.val == head2.val){
+				set.add(head1.val);
 				head1 = head1.next;
 				head2 = head2.next;
-			}else if (head1.data > head2.data){
+			}else if (head1.val > head2.val){
 				head2 = head2.next;
 			}else{
 				head1 = head1.next;
@@ -18,8 +18,8 @@ public class MergeSortedPostingsLists {
 		}
 	}
 	
-	private static Node createPostingList1(){
-        Node head = new Node(1);
+	private static ListNode createPostingList1(){
+        ListNode head = new ListNode(1);
         head.addAtEnd(2);
         head.addAtEnd(3);
         head.addAtEnd(5);
@@ -31,8 +31,8 @@ public class MergeSortedPostingsLists {
 
 	}
 	
-	private static Node createPostingList2(){
-        Node head = new Node(2);
+	private static ListNode createPostingList2(){
+        ListNode head = new ListNode(2);
         head.addAtEnd(4);
         head.addAtEnd(8);
         head.addAtEnd(16);
@@ -44,8 +44,8 @@ public class MergeSortedPostingsLists {
 		
 	public static void main (String[] args) {
 		
-		Node head1 = createPostingList1();
-		Node head2 = createPostingList2();
+		ListNode head1 = createPostingList1();
+		ListNode head2 = createPostingList2();
 
 		Set<Integer> set = new HashSet<>();
 

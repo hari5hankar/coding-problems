@@ -4,32 +4,32 @@
  */
 public class DeleteNode {
 
-    public static void deleteNode(Node someNode){
+    public static void deleteNode(ListNode someNode){
 
-        Node currentNode = someNode;
+        ListNode currentNode = someNode;
         while( (currentNode.next.next) != null){
-            Node nextNode = currentNode.next;
-            currentNode.data = nextNode.data;
+            ListNode nextNode = currentNode.next;
+            currentNode.val = nextNode.val;
             currentNode = nextNode;
         }
          currentNode.next = null;
     }
 
-    public static void deleteNode_2(Node someNode){
+    public static void deleteNode_2(ListNode someNode){
 
-        Node nextNode = someNode;
-        nextNode.data = nextNode.next.data;
+        ListNode nextNode = someNode;
+        nextNode.val = nextNode.next.val;
         nextNode.next = nextNode.next.next;
 
     }
 
     public static void main(String[] args){
-        Node head = Node.createLinkedList();
+        ListNode head = ListNode.createLinkedList();
         head.print();
         deleteNode(head.next.next.next);
         head.print();
 
-        head = Node.createLinkedList();
+        head = ListNode.createLinkedList();
         head.print();
         deleteNode_2(head.next.next.next);
         head.print();

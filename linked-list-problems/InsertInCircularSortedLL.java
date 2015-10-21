@@ -1,15 +1,15 @@
 
 public class InsertInCircularSortedLL {
 
-	public static Node insert(Node head, int num) {
-		Node node = new Node(num);
+	public static ListNode insert(ListNode head, int num) {
+		ListNode node = new ListNode(num);
 		if (head == null) {
 			node.next = node;
 			return node;
 		}
-		Node current = head;
+		ListNode current = head;
 		while (true) {
-			if (current.next.data >= num) {
+			if (current.next.val >= num) {
 				if (current == head) {
 					node.next = head;
 					while (current.next != head)
@@ -21,7 +21,7 @@ public class InsertInCircularSortedLL {
 					node.next = head;
 					return head;
 				} else {
-					Node temp = current.next;
+					ListNode temp = current.next;
 					current.next = node;
 					node.next = temp;
 					return head;
@@ -37,24 +37,24 @@ public class InsertInCircularSortedLL {
 		}
 	}
 	
-	public static void print(Node head) {
-		Node current = head;
+	public static void print(ListNode head) {
+		ListNode current = head;
 		while(current.next != head) {
-			System.out.print(current.data +  "->");
+			System.out.print(current.val +  "->");
 			current = current.next;
 		}
-		System.out.print(current.data);
+		System.out.print(current.val);
 		System.out.println();
 	}
 
 	public static void main(String[] args) {
 		
-		Node head = new Node(1);
-		head.next = new Node(2);
-		head.next.next = new Node(3);
-		head.next.next.next = new Node(4);
-		head.next.next.next.next = new Node(6);
-		head.next.next.next.next.next = new Node(7);
+		ListNode head = new ListNode(1);
+		head.next = new ListNode(2);
+		head.next.next = new ListNode(3);
+		head.next.next.next = new ListNode(4);
+		head.next.next.next.next = new ListNode(6);
+		head.next.next.next.next.next = new ListNode(7);
 		head.next.next.next.next.next.next = head;
 		print(head);	
 

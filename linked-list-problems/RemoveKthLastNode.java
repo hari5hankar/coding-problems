@@ -4,10 +4,10 @@
  */
 public class RemoveKthLastNode {
 
-    public static Node removeKthLastNode(Node head, int k){
+    public static ListNode removeKthLastNode(ListNode head, int k){
 
         int N = 0; //size of linked list
-        Node currentNode = head;
+        ListNode currentNode = head;
 
         while(currentNode != null){
             currentNode = currentNode.next;
@@ -19,8 +19,8 @@ public class RemoveKthLastNode {
         }
 
         currentNode = head;
-        Node previousNode = head;
-        Node nextNode = null;
+        ListNode previousNode = head;
+        ListNode nextNode = null;
         int i = 0;
 
         while(i < N - k){
@@ -35,7 +35,7 @@ public class RemoveKthLastNode {
 
     public static void main(String[] args){
 
-        Node head = Node.createLinkedList();
+        ListNode head = ListNode.createLinkedList();
         head = removeKthLastNode(head, 1);
         head.print();
     }

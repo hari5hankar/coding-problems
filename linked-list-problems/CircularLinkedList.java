@@ -4,10 +4,10 @@
  */
 public class CircularLinkedList {
 
-    public static Node detectlLoopInLinkedList(Node head){
+    public static ListNode detectlLoopInLinkedList(ListNode head){
 
-        Node fastNode = head;
-        Node slowNode = head;
+        ListNode fastNode = head;
+        ListNode slowNode = head;
 
         /*
          *  use a fast pointer and a slow pointer,
@@ -56,19 +56,19 @@ public class CircularLinkedList {
 
     public static void main(String[] args){
 
-        Node head = Node.createLinkedList();
+        ListNode head = ListNode.createLinkedList();
         head.print();
 
-        Node endOfList = head;
+        ListNode endOfList = head;
         while(endOfList.next != null){
             endOfList = endOfList.next;
         }
 
         endOfList.next = head.next.next.next;
 
-        Node startOfLoop = detectlLoopInLinkedList(head);
+        ListNode startOfLoop = detectlLoopInLinkedList(head);
         if(startOfLoop != null) {
-            System.out.println(startOfLoop.data);
+            System.out.println(startOfLoop.val);
         }
 
     }

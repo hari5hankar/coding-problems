@@ -8,24 +8,24 @@ public class AddNumbers {
      * Each Node represents a single digit. Numbers are in reverse:
      * the digit at the unit's place is at the head of the list.
      */
-    public static Node addNumbersInReverse(Node first, Node second){
+    public static ListNode addNumbersInReverse(ListNode first, ListNode second){
 
 
-        Node currentNodeFirst = first;
-        Node currentNodeSecond = second;
+        ListNode currentNodeFirst = first;
+        ListNode currentNodeSecond = second;
 
-        Node answerHead = null;
+        ListNode answerHead = null;
 
         int sum = 0;
         int carry = 0;
 
         while( (currentNodeFirst != null) && (currentNodeSecond != null) ) {
 
-            sum = (currentNodeFirst.data + currentNodeSecond.data + carry) % 10 ;
-            carry = (currentNodeFirst.data + currentNodeSecond.data + carry) / 10 ;
+            sum = (currentNodeFirst.val + currentNodeSecond.val + carry) % 10 ;
+            carry = (currentNodeFirst.val + currentNodeSecond.val + carry) / 10 ;
 
             if(answerHead == null){
-                answerHead = new Node(sum);
+                answerHead = new ListNode(sum);
             }else{
                 answerHead.addAtEnd(sum);
             }
@@ -41,8 +41,8 @@ public class AddNumbers {
         if(currentNodeFirst != null){
 
             while(currentNodeFirst != null){
-                sum = (currentNodeFirst.data + carry) % 10;
-                carry = (currentNodeFirst.data + carry) / 10;
+                sum = (currentNodeFirst.val + carry) % 10;
+                carry = (currentNodeFirst.val + carry) / 10;
                 answerHead.addAtEnd(sum);
                 currentNodeFirst = currentNodeFirst.next;
             }
@@ -50,8 +50,8 @@ public class AddNumbers {
         }else{
 
             while(currentNodeSecond != null){
-                sum = (currentNodeSecond.data + carry) % 10;
-                carry = (currentNodeSecond.data + carry) / 10;
+                sum = (currentNodeSecond.val + carry) % 10;
+                carry = (currentNodeSecond.val + carry) / 10;
                 answerHead.addAtEnd(sum);
                 currentNodeSecond = currentNodeSecond.next;
             }
@@ -77,13 +77,13 @@ public class AddNumbers {
      * Numbers are in correct order:
      * the digit at the unit's place is at the end of the list.
      */
-    public static Node addNumbers(Node first, Node second){
+    public static ListNode addNumbers(ListNode first, ListNode second){
 
-        Node currentNodeFirst = first;
-        Node currentNodeSecond = second;
+        ListNode currentNodeFirst = first;
+        ListNode currentNodeSecond = second;
 
-        Node answerHead = null;
-        Node previousAnswer = null;
+        ListNode answerHead = null;
+        ListNode previousAnswer = null;
 
         int sum = 0;
         int carry = 0;
@@ -110,7 +110,7 @@ public class AddNumbers {
         if(difference > 0){
             while(difference !=0){
                 //add 0 at beginning
-                Node newHead = new Node(0);
+                ListNode newHead = new ListNode(0);
                 newHead.next = second;
                 second = newHead;
 
@@ -120,7 +120,7 @@ public class AddNumbers {
             difference = -difference;
             while(difference !=0){
                 //add 0 at beginning
-                Node newHead = new Node(0);
+                ListNode newHead = new ListNode(0);
                 newHead.next = first;
                 first = newHead;
 
@@ -137,15 +137,15 @@ public class AddNumbers {
          */
         while( (currentNodeFirst != null) && (currentNodeSecond != null) ) {
 
-            sum = (currentNodeFirst.data + currentNodeSecond.data) % 10 ;
-            carry = (currentNodeFirst.data + currentNodeSecond.data) / 10 ;
+            sum = (currentNodeFirst.val + currentNodeSecond.val) % 10 ;
+            carry = (currentNodeFirst.val + currentNodeSecond.val) / 10 ;
 
             if(answerHead == null){
-                answerHead = new Node(sum);
+                answerHead = new ListNode(sum);
                 previousAnswer = answerHead;
             }else{
                 answerHead.addAtEnd(sum);
-                previousAnswer.data = previousAnswer.data + carry;
+                previousAnswer.val = previousAnswer.val + carry;
                 previousAnswer = previousAnswer.next;
             }
 
@@ -153,8 +153,8 @@ public class AddNumbers {
             currentNodeSecond = currentNodeSecond.next;
         }
 
-        if( ( (first.data + second.data) / 10 ) > 0 ){
-            Node newAnswerHead = new Node((first.data + second.data) / 10);
+        if( ( (first.val + second.val) / 10 ) > 0 ){
+            ListNode newAnswerHead = new ListNode((first.val + second.val) / 10);
             newAnswerHead.next = answerHead;
             answerHead = newAnswerHead;
         }
@@ -168,18 +168,18 @@ public class AddNumbers {
 
     public static void main(String[] args){
 
-        Node head1 = new Node(6);
+        ListNode head1 = new ListNode(6);
         head1.addAtEnd(8);
         head1.addAtEnd(1);
         head1.addAtEnd(7);
         head1.print();
 
-        Node head2 = new Node(2);
+        ListNode head2 = new ListNode(2);
         head2.addAtEnd(9);
         head2.addAtEnd(5);
         head2.print();
 
-        Node head = addNumbers(head1, head2);
+        ListNode head = addNumbers(head1, head2);
         head.print();
 
         head = addNumbersInReverse(head1, head2);

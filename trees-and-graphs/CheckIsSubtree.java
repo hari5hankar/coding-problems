@@ -1,5 +1,5 @@
 
-public class IsSubtree {
+public class CheckIsSubtree {
 
 	public static boolean isTreeASubtree(TreeNode root, TreeNode subroot){
 		if(subroot == null) return true; //null is always a subtree
