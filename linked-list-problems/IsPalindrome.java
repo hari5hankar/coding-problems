@@ -1,54 +1,54 @@
 
 import java.util.Stack;
 
-/**
- * Created by Harishankar on 26-06-2015.
- */
 public class IsPalindrome {
 
+	public static boolean isPalindrome(ListNode head) {
 
-    public static boolean isPalindrome(ListNode head){
+		Stack<Integer> stack = new Stack<Integer>();
+		ListNode slow = head;
+		ListNode fast = head;
 
-        Stack<Integer> stack = new Stack<Integer>();
-        ListNode currentNodeSlow = head;
-        ListNode currentNodeFast = head;
+		while (fast != null) {
+			stack.push(slow.val);
+			slow = slow.next;
+			if (fast.next != null)
+				fast = fast.next.next;
+			else
+				break;
+		}
 
-        while(currentNodeFast.next != null && currentNodeFast.next.next != null){
-            stack.push(currentNodeSlow.val);
-            currentNodeSlow = currentNodeSlow.next;
-            currentNodeFast = currentNodeFast.next.next;
-        }
+		// if here fast.next = null, means list has odd number of elements.
+		if (fast != null && fast.next == null)
+			stack.pop(); // so pop the stack which contains middle element.
 
-        if(currentNodeFast.next != null){
-            currentNodeSlow = currentNodeSlow.next;
-        }else{
-            stack.push(currentNodeSlow.val);
-        }
+		//slow always points to the element after the middle
+		while (!stack.isEmpty()) {
+			if (stack.pop() != slow.val) {
+				return false;
+			}
+			slow = slow.next;
+		}
 
-        while(!stack.isEmpty()){
-            if(stack.pop() != currentNodeSlow.val){
-                return false;
-            }
-            currentNodeSlow = currentNodeSlow.next;
-        }
+		return true;
 
-        return true;
+	}
 
+	public static void main(String[] args) {
 
-    }
+		ListNode head = new ListNode(1);
+		head.addAtEnd(2);
+		head.addAtEnd(3);
+		head.addAtEnd(4);
+		head.addAtEnd(5);
+		head.addAtEnd(4);
+		head.addAtEnd(3);
+		head.addAtEnd(2);
+		head.addAtEnd(1);
+		/*
+		 * head.addAtEnd(2); head.addAtEnd(1);
+		 */
 
-
-
-    public static void main(String[] args){
-
-        ListNode head = new ListNode(1);
-        head.addAtEnd(2);
-        head.addAtEnd(1);
-/*
-        head.addAtEnd(2);
-        head.addAtEnd(1);
-*/
-
-        System.out.println(isPalindrome(head));
-    }
+		System.out.println(isPalindrome(head));
+	}
 }

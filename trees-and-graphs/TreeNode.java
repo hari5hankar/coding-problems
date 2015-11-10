@@ -1,14 +1,16 @@
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 public class TreeNode {
 
-	public int key;
+	public int val;
 	public TreeNode left;
 	public TreeNode right;
 
 	public TreeNode(int key) {
-		this.key = key;
+		this.val = key;
 	}
 
 /* 
@@ -54,7 +56,7 @@ public class TreeNode {
 		queue.add(root);
 		while (!queue.isEmpty()) {
 			TreeNode x = queue.remove();
-			System.out.println(x.key);
+			System.out.println(x.val);
 			if (x.left != null)
 				queue.add(x.left);
 			if (x.right != null)
@@ -64,7 +66,7 @@ public class TreeNode {
 	
 	@Override
 	public String toString(){
-		return Integer.toString(this.key);
+		return Integer.toString(this.val);
 	}
 
 	public static void main(String[] args) {

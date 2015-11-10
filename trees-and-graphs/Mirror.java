@@ -3,9 +3,9 @@ public class Mirror {
 
 	public static void  mirror(TreeNode root){
 		if(root == null || root.left == null || root.right == null) return;
-		int temp = root.left.key;
-		root.left.key = root.right.key;
-		root.right.key = temp;
+		int temp = root.left.val;
+		root.left.val = root.right.val;
+		root.right.val = temp;
 		mirror(root.left);
 		mirror(root.right);
 		

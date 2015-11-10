@@ -1,4 +1,3 @@
-
 public class ReverseLinkedList {
 
 	public static ListNode reverseList(ListNode head) {
@@ -63,7 +62,8 @@ public class ReverseLinkedList {
 		head.print();
 		head = reverseList2(head);
 		head.print();
-
+		
+		
 	}
 
 }

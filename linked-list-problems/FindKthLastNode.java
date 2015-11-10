@@ -1,153 +1,168 @@
 
-/**
- * Created by Harishankar on 17-06-2015.
- */
 public class FindKthLastNode {
 
-    public static ListNode findKthLastNode(ListNode head, int k){
+	/***************************************************************************
+	 * Iterative solution 1: Traverse linked list to find size N. Then traverse
+	 * again to get the (N - k)th node from beginning
+	 * 
+	 ***************************************************************************/
 
-        int N = 0; //size of linked list
-        ListNode currentNode = head;
+	public static ListNode findKthLastNode_1(ListNode head, int k) {
 
-        while(currentNode != null){
-            currentNode = currentNode.next;
-            N++;
-        }
+		int N = 0; // size of linked list
+		ListNode currentNode = head;
 
-        ListNode kthLastNode = head;
-        int i =0;
-        while(i < N - k){
-            kthLastNode = kthLastNode.next;
-            i++;
-        }
-        return kthLastNode;
-    }
+		while (currentNode != null) {
+			currentNode = currentNode.next;
+			N++;
+		}
 
-    //------------------------------------------------------------------------------------------------------------------
+		System.out.println(N - k + 1);
 
-    /* a trivial solution, just print the Node,
-     * don't return it.
-     */
+		// should take N - k jumps from head to reach kth last node.
+		ListNode kthlast = head;
+		for (int i = 0; i < N - k; i++)
+			kthlast = kthlast.next;
 
-    public static int findKthLastNodeRecursive_1(ListNode head, int k) {
+		return kthlast;
+	}
 
-        if (head == null){
-            return 0;
-        }
-        int value = findKthLastNodeRecursive_1(head.next, k) + 1;
-        if ( value == k){
-            System.out.println(head.val);
-        }
-        return value;
+	/***************************************************************************
+	 * Iterative solution 2: Traverse and reach kth node of the list. Now
+	 * initialize another pointer at head. Move both the pointers
+	 * simultaneously, till the first pointer reaches the tail. The second
+	 * pointer now points to the kth last node.
+	 ***************************************************************************/
 
-    }
+	public static ListNode findKthLastNode_5(ListNode head, int k) {
+		ListNode temp = head;
 
-    //------------------------------------------------------------------------------------------------------------------
+		// to reach the kth node, make k-1 jumps form head.
+		for (int i = 0; i < k - 1; i++)
+			temp = temp.next;
+		ListNode current = head;
+		while (temp.next != null) {
+			current = current.next;
+			temp = temp.next;
+		}
 
-    /*
-     *  based on the above.
-     */
+		return current;
+	}
 
-    static class IntegerWrapper{
-        int value;
+	/***************************************************************************
+	 * Recursive solution 1 (easy): Recurse till you get to the end of the list.
+	 * Keep adding 1 to what you get. If value == k, this is your Node.
+	 ***************************************************************************/
 
-        IntegerWrapper(int value){
-            this.value = value;
-        }
-    }
+	public static int findKthLastNode_2(ListNode head, int k) {
 
-    public static ListNode findKthLastNodeRecursive_2(ListNode head, int k){
-        return findKthLastNodeRecursiveHelper(head,k, new IntegerWrapper(0));
-    }
+		if (head == null) {
+			return 0;
+		}
+		int value = findKthLastNode_2(head.next, k) + 1;
+		if (value == k) {
+			System.out.println(head.val);
+		}
+		return value;
 
+	}
 
-    /*
-     *  when end is reached, return a counter set to 0.
-     *  Each parent call adds 1 to the counter
-     *  When counter == k, we have reached Kth last element.
-     */
+	class ListNodeWrapper {
+		ListNode node;
+		int indexFromLast;
 
-    private static ListNode findKthLastNodeRecursiveHelper(ListNode head, int k, IntegerWrapper i){
+		public ListNodeWrapper(ListNode node, int indexFromLast) {
+			this.node = node;
+			this.indexFromLast = indexFromLast;
+		}
 
-        if (head == null){
-            return null;
-        }
+	}
 
-        ListNode currentNode = findKthLastNodeRecursiveHelper(head.next , k, i);
-        i.value += 1;
-        if ( i.value == k){
-            return head;
-        }
-        return currentNode;
+	/***************************************************************************
+	 * Recursive solution 2: When end is reached, return a counter set to 0.
+	 * Each parent call adds 1 to the counter When counter == k, we have reached
+	 * Kth last element.
+	 ***************************************************************************/
 
-    }
+	static class IntegerWrapper {
+		int index;
 
-    //------------------------------------------------------------------------------------------------------------------
+		IntegerWrapper(int value) {
+			this.index = value;
+		}
+	}
 
-    /*  alternate solution
-     *  uses a wrapper for the whole node, rather than just an Integer.
-     */
+	public static ListNode findKthLastNode_3(ListNode head, int k) {
+		return findKthLastNode_3(head, k, new IntegerWrapper(0));
+	}
 
-    static class NodeWrapper{
-        ListNode node;
-        int indexFromEnd; //indexFromEnd in linked list from the end
+	// Helper
+	private static ListNode findKthLastNode_3(ListNode head, int k, IntegerWrapper i) {
 
-        NodeWrapper(ListNode node, int index){
-            this.node = node;
-            this.indexFromEnd = index;
-        }
-    }
+		if (head == null) {
+			return null;
+		}
 
-    public static ListNode findKthLastNodeRecursive_3(ListNode head, int k){
-        //need to pass return a Node and a counter
-        NodeWrapper kthLastNode = findKthLastNodeRecursiveHelper(new NodeWrapper(head, -1), k);
-        return kthLastNode.node;
+		// keep returning the curr (which will be null until when i = k). when
+		// i == k start returning the head node for that method call.
+		ListNode curr = findKthLastNode_3(head.next, k, i);
+		i.index += 1;
+		if (i.index == k)
+			return head;
+		else
+			return curr;
+	}
 
-    }
+	/***************************************************************************
+	 * alternate solution uses a wrapper for the whole node, rather than just an
+	 * Integer.
+	 ***************************************************************************/
 
-    public static NodeWrapper findKthLastNodeRecursiveHelper(NodeWrapper headNodeWrapper, int k){
+	static class NodeWrapper {
+		ListNode node;
+		int indexFromEnd; // indexFromEnd in linked list from the end
 
-        if(headNodeWrapper.node == null){
-            return new NodeWrapper(null, 0);
-        }
+		NodeWrapper(ListNode node, int index) {
+			this.node = node;
+			this.indexFromEnd = index;
+		}
+	}
 
-        NodeWrapper currentNodeWrapper =  findKthLastNodeRecursiveHelper(new NodeWrapper(headNodeWrapper.node.next, -1), k);
-        headNodeWrapper.indexFromEnd = currentNodeWrapper.indexFromEnd + 1;
-        if( currentNodeWrapper.indexFromEnd  == k){
-            return currentNodeWrapper;
-        }else{
-            return headNodeWrapper;
-        }
-    }
+	public static ListNode findKthLastNode_4(ListNode head, int k) {
+		// need to pass return a Node and a counter
+		NodeWrapper kthLastNode = findKthLastNode_4(new NodeWrapper(head, -1), k);
+		return kthLastNode.node;
 
-    //------------------------------------------------------------------------------------------------------------------
+	}
 
-    public static void main(String[] args){
+	// Helper
+	public static NodeWrapper findKthLastNode_4(NodeWrapper headNW, int k) {
 
-        ListNode head = ListNode.createLinkedList();
-        head.print();
-        head = findKthLastNode(head, 6);
-        head.print();
+		if (headNW.node == null) {
+			return new NodeWrapper(null, 0);
+		}
 
-        head = ListNode.createLinkedList();
-        head.print();
-        System.out.println(findKthLastNodeRecursive_1(head, 6));
-        head.print();
+		NodeWrapper currentNW = findKthLastNode_4(new NodeWrapper(headNW.node.next, -1), k);
+		headNW.indexFromEnd = currentNW.indexFromEnd + 1;
+		if (currentNW.indexFromEnd == k) {
+			return currentNW;
+		} else {
+			return headNW;
+		}
+	}
 
-        head = ListNode.createLinkedList();
-        head.print();
-        head = findKthLastNodeRecursive_2(head, 6);
-        head.print();
+	/***************************************************************************
+	 * Testing
+	 ***************************************************************************/
 
-        head = ListNode.createLinkedList();
-        head.print();
-        head = findKthLastNodeRecursive_3(head, 6);
-        head.print();
-
-
-    }
+	public static void main(String[] args) {
+		ListNode head = ListNode.createLinkedList2();
+		head.print();
+		// findKthLastNode_1(head, 6).print();
+		// findKthLastNode_2(head, 6);
+		findKthLastNode_3(head, 6).print();
+		// findKthLastNode_4(head, 6).print();
+		// findKthLastNode_5(head, 6).print();
+	}
 
 }
-
-
-

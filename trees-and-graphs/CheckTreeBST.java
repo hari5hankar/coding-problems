@@ -23,7 +23,7 @@ public class CheckTreeBST {
 	private static void inOrder(TreeNode node, List<Integer> list){
 		if (node == null) return;
 		inOrder(node.left, list);
-		list.add(node.key);
+		list.add(node.val);
 		inOrder(node.right, list);
 	}
 	
@@ -37,8 +37,8 @@ public class CheckTreeBST {
 	
 	private static boolean isBST_2(TreeNode node, int min, int max) {
 		if(node == null) return true;
-		if(node.key < min || node.key > max) return false;
-		return isBST_2(node.left, min, node.key) && isBST_2(node.right, node.key, max);
+		if(node.val < min || node.val > max) return false;
+		return isBST_2(node.left, min, node.val) && isBST_2(node.right, node.val, max);
 	}
 
 	

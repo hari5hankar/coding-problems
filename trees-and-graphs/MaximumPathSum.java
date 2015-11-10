@@ -5,7 +5,7 @@ public class MaximumPathSum {
 		if(root == null) return 0;
 		int left = maximumPathSum(root.left);
 		int right = maximumPathSum(root.right);
-		return (left>right)? root.key + left : root.key + right;
+		return (left>right)? root.val + left : root.val + right;
 	}
 /*
 		10

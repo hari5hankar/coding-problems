@@ -28,7 +28,7 @@ public class CreateBSTFromSortedArray {
 			Queue<TreeNode> levelQ = mainQ.remove();
 			Queue<TreeNode> nextLevelQ = new LinkedList<>();
 			for (TreeNode x : levelQ) {
-				System.out.print(x.key + " ");
+				System.out.print(x.val + " ");
 				if (x.left != null)
 					nextLevelQ.add(x.left);
 				if (x.right != null)

@@ -10,7 +10,7 @@ public class PrintPathThatSumsToNode {
 	public static void printPath(Stack<Integer> stack, TreeNode root, int sum) {
 		if (root == null)
 			return;
-		stack.push(root.key);
+		stack.push(root.val);
 		if (sum == stackSum(stack))
 			printStack(stack);  //print here and continue, there could be more paths
 		printPath(stack, root.left, sum);

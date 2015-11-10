@@ -1,76 +1,63 @@
-
-/**
- * Created by Harishankar on 25-06-2015.
- */
 public class CircularLinkedList {
 
-    public static ListNode detectlLoopInLinkedList(ListNode head){
+	/***************************************************************************
+	 * use a fast pointer and a slow pointer, the fast pointer traverses the
+	 * list twice as fast. the node they meet at is at the same distance from
+	 * the start of the loop as is the head node.
+	 ***************************************************************************/
+	
+	public static ListNode detectlLoopInLinkedList(ListNode head) {
 
-        ListNode fastNode = head;
-        ListNode slowNode = head;
+		ListNode fast = head;
+		ListNode slow = head;
+		ListNode loop = null;
 
-        /*
-         *  use a fast pointer and a slow pointer,
-         *  the fast pointer traverses the list twice as fast.
-         *  the node they meet at is at the same distance from
-         *  the start of the loop as is the head node.
-         */
+		while (true) {
+			slow = slow.next;
+			if (fast.next != null)
+				fast = fast.next.next;
+			else
+				break; //no loop
 
-        /*
-         * Note: cannot use
-         * while(slowNode != fastNode)
-         * here, as we may NOT have a loop as well.
-         */
+			if (slow == null || fast == null)
+				break; //no loop
 
-        while(slowNode.next!= null){
-            fastNode = fastNode.next.next;
-            slowNode = slowNode.next;
+			if (slow == fast) {
+				loop = slow;
+				break; //loop detected
+			}
+		}
 
-            if(fastNode == slowNode){
-                break;
-            }
-        }
+		// no loop detected
+		if (loop == null)
+			return null;
 
+		slow = head;
+		while (slow != fast) {
+			slow = slow.next;
+			fast = fast.next;
+		}
 
-        /*
-         * No loop was detected
-         */
+		return slow;
+	}
 
-        if(slowNode.next == null){
-            return null;
-        }
+	public static void main(String[] args) {
 
+		ListNode head = ListNode.createLinkedList();
+		head.print();
 
-        slowNode = head;
-        while(slowNode.next!= null){
-            slowNode = slowNode.next;
-            fastNode = fastNode.next;
-            if(slowNode == fastNode){
-                break;
-            }
-        }
+		ListNode endOfList = head;
+		while (endOfList.next != null) {
+			endOfList = endOfList.next;
+		}
 
+		endOfList.next = head.next.next.next;
 
-        return slowNode;
-    }
+		ListNode startOfLoop = detectlLoopInLinkedList(head);
+		if (startOfLoop != null) {
+			System.out.println(startOfLoop.val);
+		}
 
-    public static void main(String[] args){
-
-        ListNode head = ListNode.createLinkedList();
-        head.print();
-
-        ListNode endOfList = head;
-        while(endOfList.next != null){
-            endOfList = endOfList.next;
-        }
-
-        endOfList.next = head.next.next.next;
-
-        ListNode startOfLoop = detectlLoopInLinkedList(head);
-        if(startOfLoop != null) {
-            System.out.println(startOfLoop.val);
-        }
-
-    }
+	}
 
 }

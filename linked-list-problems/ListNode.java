@@ -46,6 +46,20 @@
         head.addAtEnd(3);
         return head;
     }
+    
+    public static ListNode createLinkedList2(){
+
+        ListNode head = new ListNode(1);
+        head.addAtEnd(2);
+        head.addAtEnd(3);
+        head.addAtEnd(4);
+        head.addAtEnd(5);
+        head.addAtEnd(6);
+        head.addAtEnd(7);
+        head.addAtEnd(8);
+        head.addAtEnd(9);
+        return head;
+    }
 
     public static void main(String[] args) {
 		ListNode head = createLinkedList();

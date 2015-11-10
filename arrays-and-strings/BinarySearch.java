@@ -1,3 +1,4 @@
+import java.util.HashMap;
 
 public class BinarySearch {
 	
@@ -21,6 +22,7 @@ public class BinarySearch {
 	private static int binarySearchRecursive(int[] a, int num, int lo, int hi){
 		if(lo > hi) return -1;
 		int mid = lo + (hi - lo)/2;
+		r
 		if(num < a[mid]) return binarySearchRecursive(a, num, lo, mid - 1);
 		if(num > a[mid]) return binarySearchRecursive(a, num, mid + 1, hi);
 		return mid;
@@ -29,6 +31,11 @@ public class BinarySearch {
 	public static void main(String[] args) {
 		int a[] = {1, 2, 3, 4, 5, 6, 7, 8};
 		System.out.println(binarySearch(a, 10));
+		HashMap<Character, Integer> sMap = new HashMap<>();
+		
+		for(char c : sMap.keySet()){
+			sMap.remove(c);
+		}
 	}
 
 }

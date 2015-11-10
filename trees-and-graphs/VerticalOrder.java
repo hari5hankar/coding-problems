@@ -14,7 +14,7 @@ public class VerticalOrder {
 		printByVerticalOrder(root, 0, map);
 		for (Integer i : map.keySet()) {
 			for (TreeNode node : map.get(i)) {
-				System.out.print(node.key + " 	");
+				System.out.print(node.val + " 	");
 			}
 			System.out.println();
 		}

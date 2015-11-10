@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class DoubleNode {
     public int data;
     public DoubleNode next;
-    public DoubleNode rand;
+    public DoubleNode prev;
 
     public DoubleNode(int data) {
 	this.data = data;
@@ -18,7 +18,7 @@ public class DoubleNode {
 	    currentNode = currentNode.next;
 	}
 	currentNode.next = newLast;
-	newLast.rand = currentNode;
+	newLast.prev = currentNode;
     }
 
     public void print() {
@@ -53,7 +53,7 @@ public class DoubleNode {
 	
 	for(int i = 0; i< size; i++){
 	    int rand = (int) (Math.random()*10);
-	    list.get(i).rand = list.get(rand);
+	    list.get(i).prev = list.get(rand);
 	}
 	
 	return head;
