@@ -3,13 +3,31 @@ public class RemoveDuplicatesFromSortedLinkedList {
 	public static ListNode deleteDuplicates(ListNode head) {
 		ListNode current = head;
 		while (current != null) {
-			if ((current.next!=null) && current.val == current.next.val) {
+			if ((current.next != null) && current.val == current.next.val) {
 				current.next = current.next.next;
-			}else{
+			} else {
 				current = current.next;
 			}
 
 		}
+		return head;
+	}
+
+	public static ListNode deleteDuplicates2(ListNode head) {
+	
+		ListNode prev = head;    
+        ListNode curr = head.next;
+ 
+        while(curr != null){
+            if(curr.val == prev.val){
+                prev.next = curr.next;
+                curr = curr.next; //do not change prev
+            }else{
+                prev = curr;
+                curr = curr.next; 
+            }
+        }
+ 
 		return head;
 	}
 
@@ -25,9 +43,10 @@ public class RemoveDuplicatesFromSortedLinkedList {
 		head.addAtEnd(5);
 		head.addAtEnd(6);
 		head.addAtEnd(6);
-		
-		deleteDuplicates(head);
-		
+
+		// deleteDuplicates(head);
+		deleteDuplicates2(head);
+
 		head.print();
 
 	}

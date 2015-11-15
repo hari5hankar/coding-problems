@@ -1,17 +1,11 @@
 
 import java.util.HashSet;
 
-/**
- * Created by Harishankar on 17-06-2015.
- */
 public class RemoveDuplicates {
 
-    //------------------------------------------------------------------------------------------------------------------
-
-    /*
-     *  remove duplicates and return head
-     */
-
+    /******************************************************************
+     *  Use a hash set.
+     *******************************************************************/
     public static ListNode removeDuplicates(ListNode head) {
 
         HashSet<Integer> set = new HashSet<>();
@@ -30,11 +24,9 @@ public class RemoveDuplicates {
       return head;
     }
 
-    //------------------------------------------------------------------------------------------------------------------
-
-    /*
-     *  remove duplicates and return head without using a temporary buffer
-     */
+    /******************************************************************
+     *  Without using a temporary buffer
+     *******************************************************************/
 
     public static ListNode removeDuplicatesWithoutBuffer(ListNode head){
         ListNode currentPrimaryNode = head;

@@ -10,14 +10,21 @@ public class CreateBSTFromSortedArray {
 		return createBST(a, 0, a.length -1 );
 	}
 	
+
 	private static TreeNode createBST(int[] a, int lo, int hi) {
-		if(hi < lo) return null;
+		if(hi < lo) return null; //not hi <= lo (see side note)
 		int mid = lo + (hi -lo) / 2;
 		TreeNode node = new TreeNode(a[mid]);
 		node.left = createBST(a, lo, mid - 1);
 		node.right = createBST(a, mid + 1, hi);
 		return node;
 	}
+	
+	/*
+	 * Side note here: we used hi <= lo in merge sort, as we did no want to merge one
+	 * element arrays, they are already sorted. but here , we DO want to create
+	 * a node from a single element as well.
+	 */	
 	
 	public static void printByLevel(TreeNode root) {
 		Queue<Queue<TreeNode>> mainQ = new LinkedList<>();

@@ -1,7 +1,7 @@
-import java.util.HashSet;
+ import java.util.HashSet;
 import java.util.Set;
 
-public class MergeSortedLists {
+public class MergeSortedPostingsLists {
 
 	public static void merge(Set<Integer> set, ListNode head1, ListNode head2) {
 		

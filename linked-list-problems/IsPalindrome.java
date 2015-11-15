@@ -18,8 +18,8 @@ public class IsPalindrome {
 				break;
 		}
 
-		// if here fast.next = null, means list has odd number of elements.
-		if (fast != null && fast.next == null)
+		// if here fast != null, means list has odd number of elements.
+		if (fast != null)
 			stack.pop(); // so pop the stack which contains middle element.
 
 		//slow always points to the element after the middle
@@ -33,6 +33,10 @@ public class IsPalindrome {
 		return true;
 
 	}
+	
+	/***************************************************************************
+	 * Testing
+	 ***************************************************************************/
 
 	public static void main(String[] args) {
 

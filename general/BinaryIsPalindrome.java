@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class BinaryIsPalindrome {
 
 	/********************************************************
@@ -42,12 +44,19 @@ public class BinaryIsPalindrome {
 		return ((num >>> k) & 1) == 1;
 		// return ((1 << k) & num) != 0; //also works
 	}
+	
+    public static int lengthOfLastWord(String s) {
+        String[] arr = s.split("\\s+");
+        return arr[arr.length - 1].length();
+    }
 
 	public static void main(String[] args) {
-		int num = 3 << 30;
+		String s = "asdasd asdasdasd asd aa ";
+		System.out.println(lengthOfLastWord(s));
+		/*int num = 3 << 30;
 		num |= 3;
 		System.out.println(Integer.toBinaryString(num));
 		System.out.println(isPalindrome_2(num));
-		System.out.println();
+		System.out.println();*/
 	}
 }
