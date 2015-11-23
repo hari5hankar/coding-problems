@@ -1,8 +1,47 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 
 public class SetSymmetricDifference {
 
+	public static int[] symmetric(int[] a, int[] b){
+		List<Integer> list = new ArrayList<>();
+		
+		Arrays.sort(a);
+		Arrays.sort(b);
+		
+		int i = 0, j = 0;
+		while(i < a.length && j < b.length){
+			if(a[i] < b[j])
+				list.add(a[i++]);
+			else if(a[i] > b[j])
+				list.add(b[j++]);
+			else{
+				int p = a[i];
+				int q = b[j];
+				while(a[++i] == p);
+				while(b[++j] == q);
+			}
+		}
+		
+		while(i < a.length){
+			list.add(a[i++]);
+		}
+		
+		while(j < b.length){
+			list.add(b[j++]);
+		}
+		
+		int[] ret = new int[list.size()];
+		for(int k = 0; k < ret.length; k++){
+			ret[k] = list.get(k);
+		}
+		return ret;
+			
+	}
+	
+	
 	public static String[] symmetricDifference(String[] a, String[] b){
 		HashSet<String> setA = new HashSet<>();
 		for(String s : a){
@@ -19,17 +58,9 @@ public class SetSymmetricDifference {
 	}
 	
 	public static void main(String[] args) {
-		String[] a = { "Desiree Jagger", "Benedict Casteel", "Evon Saddler", "To	     by Greenland", "Norine Caruana",
-				"Felecia Houghton", "Lanelle Franzoni", "Armandina Everitt", "Inger Honea", "Autumn Hendriks" };
-
-		String[] b = { "Karrie Rutan", "Desiree Jagger", "Armandina Everitt", "Arlen Nowacki", "Ward Siciliano",
-				"Mira Yonts", "Marcelo Arab", "Autumn Hendriks", "Mazie Hemstreet", "Toby Greenland" };
-		
-		System.out.println(Arrays.toString(symmetricDifference(a, b)));
-
+		int[] a = {1, 2, 2, 2, 4};
+		int[] b = {2, 2, 3, 3, 7, 15};
+		int[] c = symmetric(a, b);
+		System.out.println(Arrays.toString(c));
 	}
-	
-
-	
-	
 }

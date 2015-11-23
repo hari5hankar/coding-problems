@@ -2,12 +2,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 /*
- * find out all prime numbers less than N
- * sieve of eratosthenes
+ * Find all prime numbers less than or equal to N
+ * Sieve of Eratosthenes
  */
 public class PrimeNumbers {
 
-	public static List<Integer> primes(int n) {
+	
+	public static Iterable<Integer> primes(int n) {
 
 		/* boolean array indexed by numbers <= n */
 		/* to indicate if number is prime */

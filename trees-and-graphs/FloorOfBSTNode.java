@@ -1,6 +1,6 @@
 
 /*
- * the floor of a key is the smallest key greater than or equal to the given key. 
+ * the floor of a key is the largest key smaller than or equal to the given key. 
  */
 public class FloorOfBSTNode {
 
