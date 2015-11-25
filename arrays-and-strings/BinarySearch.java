@@ -22,7 +22,7 @@ public class BinarySearch {
 	private static int binarySearchRecursive(int[] a, int num, int lo, int hi){
 		if(lo > hi) return -1;
 		int mid = lo + (hi - lo)/2;
-		r
+		
 		if(num < a[mid]) return binarySearchRecursive(a, num, lo, mid - 1);
 		if(num > a[mid]) return binarySearchRecursive(a, num, mid + 1, hi);
 		return mid;
