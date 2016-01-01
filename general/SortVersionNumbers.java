@@ -31,7 +31,6 @@ public class SortVersionNumbers {
 				else if (p2 > a2.length) return 1;
 				else return 0;
 			}
-
 		}
 		
 		Arrays.sort(a, new VersionComparator());

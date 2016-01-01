@@ -1,10 +1,22 @@
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 
 public class Test {
 
 	public static void main(String[] args) {
-		int[] a = { 2, 5, 3, 4 };
+		LinkedHashMap<Integer, Integer> map = new LinkedHashMap<>();
+		for(int i = 0; i < 10; i++)
+			map.put(i, i);
+		
+		System.out.println(map.get(1));
+		
+		}
+}
+
+
+/*
+int[] a = { 2, 5, 3, 4 };
 		int[] b = { 5, 1, 2, 7 };
 
 		Arrays.sort(a);
@@ -29,10 +41,7 @@ public class Test {
 		while( j < b.length){
 			System.out.println(b[j++]);
 		}
-		
-		
-		}
-}
+ */
 
 
 /*

@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 public class BinaryIsPalindrome {
 
 	/********************************************************
@@ -51,6 +49,8 @@ public class BinaryIsPalindrome {
     }
 
 	public static void main(String[] args) {
+		System.out.println(Integer.toBinaryString(1212));
+		System.out.println(getBit(1212, 31));
 		String s = "asdasd asdasdasd asd aa ";
 		System.out.println(lengthOfLastWord(s));
 		/*int num = 3 << 30;

@@ -23,19 +23,15 @@ public class LargestK {
 		Scanner sc = new Scanner(inputStream);
 		while (sc.hasNext()) {
 			int i = sc.nextInt();
-			if (minPQ.size() == k) {
-				if(i > minPQ.peek()){
-					minPQ.remove();
-					minPQ.add(i);
-				}
-			} else {
-				minPQ.add(i);
+			minPQ.add(i);
+			if (minPQ.size() > k) {
+				minPQ.remove();
+				System.out.println(minPQ); // print all elements of heap
 			}
 		}
 		sc.close();
-		
-		while(!minPQ.isEmpty())
-			System.out.print(minPQ.remove() + " ");
+
+		System.out.println(minPQ);
 	}
 
 	public static void main(String[] args) {

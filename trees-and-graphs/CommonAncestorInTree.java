@@ -11,12 +11,10 @@ public class CommonAncestorInTree {
 	public static int commonAncestor1(TreeNode root, int key1, int key2) {
 		Stack<Integer> s1 = new Stack<>();
 		Stack<Integer> s2 = new Stack<>();
-		boolean key1Exists = storePathIfExists(s1, root, key1);
-		boolean key2Exists =storePathIfExists(s2, root, key2);
-		if((key1Exists && key2Exists) == false){
-			System.out.println("node not found");
-			return 0;
-		}
+
+		storePathIfExists(s1, root, key1);
+		storePathIfExists(s2, root, key2);
+		
 		int i;
 		for (i = 0; i < s1.size() && i < s2.size(); i++) {
 			if (s1.get(i) != s2.get(i))
@@ -31,11 +29,12 @@ public class CommonAncestorInTree {
 	 */
 	private static boolean storePathIfExists(Stack<Integer> stack, TreeNode node, int key) {
 		if (node == null)
-			return false; //node was not found along this path
+			return false; // node was not found along this path
 		stack.push(node.val);
-		if (key == node.val)
+		if (key == node.val) 
 			return true;
-		else if (storePathIfExists(stack, node.left, key) || storePathIfExists(stack, node.right, key)) {
+		
+		if (storePathIfExists(stack, node.left, key) || storePathIfExists(stack, node.right, key)) {
 			return true;
 		} else {
 			stack.pop();
@@ -46,7 +45,7 @@ public class CommonAncestorInTree {
 	/*
 	 * The idea is to traverse the tree starting from root. If any of the given
 	 * keys (n1 and n2) matches with root, then root is LCA (assuming that both
-	 * keys are present). If root doesn’t match with any of the keys, we recur
+	 * keys are present). If root doesn't match with any of the keys, we recur
 	 * for left and right subtree. The node which has one key present in its
 	 * left subtree and the other key present in right subtree is the LCA. If
 	 * both keys lie in left subtree, then left subtree has LCA also, otherwise

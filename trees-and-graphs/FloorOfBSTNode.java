@@ -27,7 +27,14 @@ public class FloorOfBSTNode {
 	}
 
 	public static void main(String[] args) {
-		BSTNode root = BSTNode.createBST();
+		//BSTNode root = BSTNode.createBST();
+		BSTNode root = new BSTNode(6);
+		root.put(2);
+		root.put(7);
+		root.put(1);
+		root.put(5);
+		root.put(0);
+		BSTNode.levelOrder(root);
 		System.out.println(floor(root, 13).key);
 	}
 

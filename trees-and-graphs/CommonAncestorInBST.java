@@ -14,8 +14,8 @@ public class CommonAncestorInBST {
 		if (key1 > root.key && key2 > root.key)
 			return commonAncestor(root.right, key1, key2);
 		/*
-		 * diverge happens, when any one key becomes equal to root, in which
-		 * case it itself is the common ancestor. or, when one key is less than
+		 * diverge happens, when 1. any one key becomes equal to root, in which
+		 * case it itself is the common ancestor. 2. when one key is less than
 		 * root and the other is greater.
 		 */
 		return root;

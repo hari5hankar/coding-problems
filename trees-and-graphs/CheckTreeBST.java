@@ -9,8 +9,8 @@ public class CheckTreeBST {
 	public static boolean isBST_1(TreeNode root) {
 		List<Integer> a = new ArrayList<>();
 		inOrder(root, a);
-		for (int i = 0; i < a.size() - 1; i++) {
-			if (a.get(i) > a.get(i + 1))
+		for (int i = 1; i < a.size() - 1; i++) {
+			if (a.get(i) < a.get(i - 1))
 				return false;
 		}
 		return true;
@@ -28,16 +28,16 @@ public class CheckTreeBST {
 	 * Recursive: starting with the root, check if each node's value is in the
 	 * appropriate range.
 	 ***************************************************************************/
-	public static boolean isBST_2(TreeNode root) {
-		return isBST_2(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
+	public static boolean isBST2(TreeNode root) {
+		return isBST2(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
 	}
 
-	private static boolean isBST_2(TreeNode node, int min, int max) {
+	private static boolean isBST2(TreeNode node, int min, int max) {
 		if (node == null)
 			return true;
 		if (node.val < min || node.val > max)
 			return false;
-		return isBST_2(node.left, min, node.val) && isBST_2(node.right, node.val, max);
+		return isBST2(node.left, min, node.val) && isBST2(node.right, node.val, max);
 	}
 
 	/*
@@ -56,11 +56,11 @@ public class CheckTreeBST {
 	public static void main(String[] args) {
 		TreeNode root = TreeNode.createBinaryTree();
 		System.out.println(CheckTreeBST.isBST_1(root));
-		System.out.println(CheckTreeBST.isBST_2(root));
+		System.out.println(CheckTreeBST.isBST2(root));
 
 		root = CheckTreeBST.createBST();
 		System.out.println(CheckTreeBST.isBST_1(root));
-		System.out.println(CheckTreeBST.isBST_2(root));
+		System.out.println(CheckTreeBST.isBST2(root));
 	}
 
 }
