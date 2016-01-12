@@ -55,12 +55,12 @@ public class StockBuyAndSell {
 			int j = i;
 			while (i < prices.length - 1 && prices[i] < prices[i + 1])
 				i++;
-			if (i != j)
-				totalProfit += prices[i] - prices[j];
+			totalProfit += prices[i] - prices[j];
 		}
 
 		return totalProfit;
 	}
+	
 
 	public static void main(String[] args) {
 		// int[] prices = { 100, 180, 160, 310, 40, 535, 695 };
