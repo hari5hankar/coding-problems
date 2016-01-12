@@ -9,7 +9,7 @@ public class AddBinary {
 
 		StringBuilder A = new StringBuilder(a);
 		StringBuilder B = new StringBuilder(b);
-		if (A.length() > b.length()) {
+		if (a.length() > b.length()) {
 			int i = A.length() - B.length();
 			while (i-- != 0)
 				B.insert(0, "0");
@@ -38,7 +38,7 @@ public class AddBinary {
 	}
 
 	public static void main(String[] args) {
-		System.out.println(addBinary("111", "111"));
+		System.out.println(addBinary("11111", "111"));
 
 	}
 }

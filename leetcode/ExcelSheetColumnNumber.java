@@ -2,11 +2,10 @@
 public class ExcelSheetColumnNumber {
 
 	public static int titleToNumber(String s) {
-
 		int num = 0;
-		for (int i = s.length() - 1; i >= 0; i--) {
-			int x = charToNum(s.charAt(i));
-			num += x * (Math.pow(26, i));
+		char[] array = s.toCharArray();
+		for (int i = 0; i < array.length; i++) {
+			num += (charToNum(array[i])) * (Math.pow(26, array.length - i - 1));
 		}
 		return num;
 	}
@@ -16,6 +15,6 @@ public class ExcelSheetColumnNumber {
 	}
 
 	public static void main(String[] args) {
-		System.out.println(titleToNumber("ZZ"));
+		System.out.println(titleToNumber("ZA"));
 	}
 }

@@ -24,6 +24,8 @@ public class FactorialTrailingZeroes {
 	
 	public static void main(String[] args) {
 		System.out.println(trailing(2147483647));
-		
+		int i = 0;
+		i = i += 5;
+		System.out.println(i);
 	}
 }

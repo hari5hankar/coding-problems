@@ -2,10 +2,9 @@ import java.util.Arrays;
 
 public class CountPrimes {
 
-	public static int countPrimes(int n) {
+	public static int countPrimes(int N) {
 
-		// 0...n-1 boolean indexed array
-		int N = n;
+		// 0...N-1 boolean indexed array
 		boolean primes[] = new boolean[N];
 
 		// always start with 2, 0 and 1 are not prime.

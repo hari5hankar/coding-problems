@@ -2,25 +2,25 @@
 
 public class ExcelSheetColumnTitle {
 
-	public static String convertToTitle2(int n) {
-		if (n <= 0) {
-			throw new IllegalArgumentException("Input is not valid!");
-		}
+	public static String convertToTitle(int n) {
 
 		StringBuilder sb = new StringBuilder();
 
 		while (n > 0) {
 			n--;
-			char ch = (char) (n % 26 + 'A');
-			n /= 26;
+			char ch = getCharacter(n);
 			sb.append(ch);
+			n /= 26;
 		}
-
-		sb.reverse();
-		return sb.toString();
+		
+		return sb.reverse().toString();
+	}
+	
+	public static char getCharacter(int n) {
+		return (char) (n + 'A');
 	}
 
-	public static String convertToTitle(int n) {
+	public static String convertToTitle2(int n) {
 		int num = n;
 		StringBuilder title = new StringBuilder();
 		while (num != 0) {
@@ -29,7 +29,7 @@ public class ExcelSheetColumnTitle {
 				title.append('Z');
 				num = num / 26 - 1;
 			} else {
-				title.append(getCharacter(rem));
+				title.append(getCharacter2(rem));
 				num = num / 26;
 			}
 
@@ -37,11 +37,12 @@ public class ExcelSheetColumnTitle {
 		return title.reverse().toString();
 	}
 
-	public static char getCharacter(int n) {
+	public static char getCharacter2(int n) {
 		return (char) (n + 'A' - 1);
 	}
 
 	public static void main(String[] args) {
-		System.out.println(getCharacter(0));
+		System.out.println(convertToTitle2(26));
+		System.out.println(convertToTitle(26));
 	}
 }
